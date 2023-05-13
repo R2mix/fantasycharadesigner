@@ -74,7 +74,6 @@ function saves() {
   }
 }
 
-
 function buttonImageSelected(yy, imageDisplayed, imgSelected, rng) {
   // a button selected
   push();
@@ -124,17 +123,17 @@ function personnage() {
   }
   if (hideMouth == false) { image(imgMouth, mouthX, mouthY, mouthSize, mouthSize); }
 
-  if (buttonIsClicked(hairX, hairY, hairSize, hairSize) && selected == "hair") {
-    hairX = hairX + (mouseX - pmouseX);
-    hairY = hairY + (mouseY - pmouseY);
-  }
-  if (hideHair == false) { image(imgHair, hairX, hairY, hairSize, hairSize); }
-
   if (buttonIsClicked(armorX, armorY, armorSize, armorSize) && selected == "armor") {
     armorX = armorX + (mouseX - pmouseX);
     armorY = armorY + (mouseY - pmouseY);
   }
   if (hideArmor == false) { image(imgArmor, armorX, armorY, armorSize, armorSize); }
+
+  if (buttonIsClicked(hairX, hairY, hairSize, hairSize) && selected == "hair") {
+    hairX = hairX + (mouseX - pmouseX);
+    hairY = hairY + (mouseY - pmouseY);
+  }
+  if (hideHair == false) { image(imgHair, hairX, hairY, hairSize, hairSize); }
 
   if (buttonIsClicked(helmX, helmY, helmSize, helmSize) && selected == "helm") {
     helmX = helmX + (mouseX - pmouseX);
@@ -148,78 +147,78 @@ function mousePressed() {
   // next costume Button !
 
   if (buttonIsClicked(width - 200, 80, 20, 80)) {
-    rngEye++;
+    rngEye--;
     rngEye = constrain(rngEye, 0, 59);
     imgEyes = loadImage("data/eyes/eyes_" + rngEye + ".png");
   }
   if (buttonIsClicked(width - 60, 80, 20, 80)) {
-    rngEye--;
+    rngEye++;
     rngEye = constrain(rngEye, 0, 59);
     imgEyes = loadImage("data/eyes/eyes_" + rngEye + ".png");
   }
 
   if (buttonIsClicked(width - 200, 80 * 2, 20, 80)) {
-    rngPrenose++;
+    rngPrenose--;
     rngPrenose = constrain(rngPrenose, 0, 27);
     imgPrenose = loadImage("data/prenose/prenose_" + rngPrenose + ".png")
   }
   if (buttonIsClicked(width - 60, 80 * 2, 20, 80)) {
-    rngPrenose--;
+    rngPrenose++;
     rngPrenose = constrain(rngPrenose, 0, 27);
     imgPrenose = loadImage("data/prenose/prenose_" + rngPrenose + ".png")
   }
 
   if (buttonIsClicked(width - 200, 80 * 3, 20, 80)) {
-    rngNose++;
+    rngNose--;
     rngNose = constrain(rngNose, 0, 37);
     imgNose = loadImage("data/nose/nose_" + rngNose + ".png");
   }
   if (buttonIsClicked(width - 60, 80 * 3, 20, 80)) {
-    rngNose--;
+    rngNose++;
     rngNose = constrain(rngNose, 0, 37);
     imgNose = loadImage("data/nose/nose_" + rngNose + ".png");
   }
 
   if (buttonIsClicked(width - 200, 80 * 4, 20, 80)) {
-    rngMouth++;
+    rngMouth--;
     rngMouth = constrain(rngMouth, 0, 40);
     imgMouth = loadImage("data/mouth/mouth_" + rngMouth + ".png");
   }
   if (buttonIsClicked(width - 60, 80 * 4, 20, 80)) {
-    rngMouth--
+    rngMouth++;
     rngMouth = constrain(rngMouth, 0, 40);
     imgMouth = loadImage("data/mouth/mouth_" + rngMouth + ".png");
   }
 
   if (buttonIsClicked(width - 200, 80 * 5, 20, 80)) {
-    rngHair++;
+    rngHair--;
     rngHair = constrain(rngHair, 0, 114);
     imgHair = loadImage("data/hair/hair_" + rngHair + ".png");
   }
   if (buttonIsClicked(width - 60, 80 * 5, 20, 80)) {
-    rngHair--;
+    rngHair++;
     rngHair = constrain(rngHair, 0, 114);
     imgHair = loadImage("data/hair/hair_" + rngHair + ".png");
   }
 
   if (buttonIsClicked(width - 200, 80 * 6, 20, 80)) {
-    rngArmor++;
+    rngArmor--;
     rngArmor = constrain(rngArmor, 0, 108);
     imgArmor = loadImage("data/tops/top_" + rngArmor + ".png");
   }
   if (buttonIsClicked(width - 60, 80 * 6, 20, 80)) {
-    rngArmor--;
+    rngArmor++;
     rngArmor = constrain(rngArmor, 0, 108);
     imgArmor = loadImage("data/tops/top_" + rngArmor + ".png");
   }
 
   if (buttonIsClicked(width - 200, 80 * 7, 20, 80)) {
-    rngHelm++;
+    rngHelm--;
     rngHelm = constrain(rngHelm, 0, 26);
     imgHelm = loadImage("data/helmet/helm_" + rngHelm + ".png");
   }
   if (buttonIsClicked(width - 60, 80 * 7, 20, 80)) {
-    rngHelm--;
+    rngHelm++;
     rngHelm = constrain(rngHelm, 0, 26);
     imgHelm = loadImage("data/helmet/helm_" + rngHelm + ".png");
   }
