@@ -360,37 +360,44 @@ function buttonPP() {
     fill(0);
     switch (selected) {
       case "eye":
-        eyesSize -= 4;
+        eyesSizeW -= 4;
+        eyesSizeH -= 4;
         eyeX += 2;
         eyeY += 2;
         break;
       case "prenose":
-        prenoseSize -= 4;
+        prenoseSizeW -= 4;
+        prenoseSizeH -= 4;
         prenoseX += 2;
         prenoseY += 2;
         break;
       case "nose":
-        noseSize -= 4;
+        noseSizeW -= 4;
+        noseSizeH -= 4;
         noseX += 2;
         noseY += 2;
         break;
       case "mouth":
-        mouthSize -= 4;
+        mouthSizeW -= 4;
+        mouthSizeH -= 4;
         mouthX += 2;
         mouthY += 2;
         break;
       case "hair":
-        hairSize -= 4;
+        hairSizeW -= 4;
+        hairSizeH -= 4;
         hairX += 2;
         hairY += 2;
         break;
       case "armor":
-        armorSize -= 4;
+        armorSizeW -= 4;
+        armorSizeH -= 4;
         armorX += 2;
         armorY += 2;
         break;
       case "helm":
-        helmSize -= 4;
+        helmSizeW -= 4;
+        helmSizeW -= 4;
         helmX += 2;
         helmY += 2;
         break;
