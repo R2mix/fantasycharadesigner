@@ -127,17 +127,17 @@ function personnage() {
   }
   if (hideMouth == false) { image(imgMouth, mouthX, mouthY, mouthSizeW, mouthSizeH); }
 
-  if (buttonIsClicked(armorX, armorY, armorSizeW, armorSizeH) && selected == "armor") {
-    armorX = armorX + (mouseX - pmouseX);
-    armorY = armorY + (mouseY - pmouseY);
-  }
-  if (hideArmor == false) { image(imgArmor, armorX, armorY, armorSizeW, armorSizeH); }
-
   if (buttonIsClicked(hairX, hairY, hairSizeW, hairSizeH) && selected == "hair") {
     hairX = hairX + (mouseX - pmouseX);
     hairY = hairY + (mouseY - pmouseY);
   }
   if (hideHair == false) { image(imgHair, hairX, hairY, hairSizeW, hairSizeH); }
+  
+  if (buttonIsClicked(armorX, armorY, armorSizeW, armorSizeH) && selected == "armor") {
+    armorX = armorX + (mouseX - pmouseX);
+    armorY = armorY + (mouseY - pmouseY);
+  }
+  if (hideArmor == false) { image(imgArmor, armorX, armorY, armorSizeW, armorSizeH); }
 
   if (buttonIsClicked(helmX, helmY, helmSizeW, helmSizeH) && selected == "helm") {
     helmX = helmX + (mouseX - pmouseX);
@@ -397,7 +397,7 @@ function buttonPP() {
         break;
       case "helm":
         helmSizeW -= 4;
-        helmSizeW -= 4;
+        helmSizeH -= 4;
         helmX += 2;
         helmY += 2;
         break;
