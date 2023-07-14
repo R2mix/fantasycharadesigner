@@ -1,7 +1,4 @@
-// missing ??
-/** LICENCE SYSTEM and  
-*/
-
+//****Fantasy Chara Designer By R2MIX */
 
 let imgHair, imgEyes, imgPrenose, imgNose, imgMouth, imgArmor, imgHelm;
 let rngNose, rngMouth, rngEye, rngHair, rngPrenose, rngArmor, rngHelm;
@@ -12,12 +9,22 @@ let hairX = 100, hairY = 0, eyeX = 250, eyeY = 300, prenoseX = 380, prenoseY = 3
 let hairSizeW = 600, hairSizeH = 600, eyesSizeW = 300, eyesSizeH = 300, prenoseSizeW = 60, prenoseSizeH = 60;
 let noseSizeW = 100, noseSizeH = 100, mouthSizeW = 135, mouthSizeH = 135, armorSizeW = 1600, armorSizeH = 1600, helmSizeW = 1024, helmSizeH = 1024;
 
-
 function windowResized() {
 resizeCanvas(windowWidth, windowHeight);
 }
 
 function setup() {
+
+  // fonction pour détecter si mobile ou mobileversion computer ou ordinateur
+  let userAgent = navigator.userAgent;
+  let isComputer = /Windows|Macintosh|Linux/i.test(userAgent);
+
+  if (window.innerWidth < 600 && !isComputer ) { 
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=0.4');
+  } else {
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0'); 
+  }
+//-*-----------------------------------------------------***-------------------------
   createCanvas(windowWidth, windowHeight);
   rngNose = 0;
   rngMouth = 4;
@@ -50,12 +57,12 @@ function setup() {
 function draw() {
   clear();
   background(255);
-  fill(0)
+  fill(0);
   push();
   noStroke();
   text('Fantasy chara Designer', 40, 40);
   pop();
-  imageMode(CORNER)
+  imageMode(CORNER);
   personnage();
   saves();
   if (saving == false) { allButton(); }
