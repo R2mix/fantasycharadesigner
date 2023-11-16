@@ -1,3 +1,3 @@
-# fantasycharadesigner Alpha 0.3
+# fantasycharadesigner
 
 https://r2mix.github.io/fantasycharadesigner/
