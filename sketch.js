@@ -1,16 +1,17 @@
 //****Fantasy Chara Designer By R2MIX */
 
+
 let imgHair, imgEyes, imgPrenose, imgNose, imgMouth, imgArmor, imgHelm;
 let rngNose, rngMouth, rngEye, rngHair, rngPrenose, rngArmor, rngHelm;
 let imgSave, imgHide, saving = false, savingCounter = 0;
-let hideHair = false, hideEyes = false, hideNose = false, hidePrenose = false, hideMouth = false, hideArmor = false, hideHelm = true;
+let hideHair = false, hideEyes = false, hideNose = false, hidePrenose = false, hideMouth = false, hideArmor = false, hideHelm = false;
 let selected = "";
-let hairX = 100, hairY = 0, eyeX = 250, eyeY = 300, prenoseX = 380, prenoseY = 365, noseX = 350, noseY = 380, mouthX = 333, mouthY = 510, armorX = -350, armorY = 760, helmX = 0, helmY = 0;
-let hairSizeW = 600, hairSizeH = 600, eyesSizeW = 300, eyesSizeH = 300, prenoseSizeW = 60, prenoseSizeH = 60;
-let noseSizeW = 100, noseSizeH = 100, mouthSizeW = 135, mouthSizeH = 135, armorSizeW = 1600, armorSizeH = 1600, helmSizeW = 1024, helmSizeH = 1024;
+let hairX = 256, hairY = 56, eyeX = 256, eyeY = 56, prenoseX = 256, prenoseY = 56, noseX = 256, noseY = 56, mouthX = 256, mouthY = 56, armorX = 100, armorY = 500, helmX = 256, helmY = 56;
+let hairSizeW = 1024, hairSizeH = 1024, eyesSizeW = 1024, eyesSizeH = 1024, prenoseSizeW = 1024, prenoseSizeH = 1024;
+let noseSizeW = 1024, noseSizeH = 1024, mouthSizeW = 1024, mouthSizeH = 1024, armorSizeW = 1280, armorSizeH = 1280, helmSizeW = 1024, helmSizeH = 1024;
 
 function windowResized() {
-resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function setup() {
@@ -19,36 +20,37 @@ function setup() {
   let userAgent = navigator.userAgent;
   let isComputer = /Windows|Macintosh|Linux/i.test(userAgent);
 
-  if (window.innerWidth < 600 && !isComputer ) { 
+  if (window.innerWidth < 600 && !isComputer) {
     document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=0.4');
   } else {
-    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0'); 
+    document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=device-width, initial-scale=1.0');
   }
-//-*-----------------------------------------------------***-------------------------
+  //-*-----------------------------------------------------***-------------------------
   createCanvas(windowWidth, windowHeight);
   rngNose = 0;
-  rngMouth = 4;
-  rngPrenose = 1;
-  rngEye = 34;
-  rngHair = 35;
-  rngArmor = 14;
+  rngMouth = 0;
+  rngPrenose = 0;
+  rngEye = 0;
+  rngHair = 0;
+  rngArmor = 0;
   rngHelm = 0;
-  /*
-    rngNose = int(random(41));
-    rngMouth = int(random(45));
-    rngPrenose = int(random(28));
-    rngEye = int(random(63));
-    rngHair = int(random(114));
-    rngArmor = int(random(108));
-    rngHelm = int(random(26));
-    */
-  imgHair = loadImage("data/hair/hair_" + rngHair + ".png");
-  imgEyes = loadImage("data/eyes/eyes_" + rngEye + ".png");
-  imgPrenose = loadImage("data/prenose/prenose_" + rngPrenose + ".png");
-  imgNose = loadImage("data/nose/nose_" + rngNose + ".png");
-  imgMouth = loadImage("data/mouth/mouth_" + rngMouth + ".png");
-  imgArmor = loadImage("data/tops/top_" + rngArmor + ".png");
-  imgHelm = loadImage("data/helmet/helm_" + rngHelm + ".png");
+
+  rngNose = int(random(12));
+  rngMouth = int(random(11));
+  rngPrenose = int(random(4));
+  rngEye = int(random(30));
+  rngHair = int(random(46));
+  rngArmor = int(random(12));
+  rngHelm = int(random(12));
+
+
+  imgHair = loadImage("data/hair/hair" + rngHair + ".png");
+  imgEyes = loadImage("data/eyes/eyes" + rngEye + ".png");
+  imgPrenose = loadImage("data/prenose/prenose" + rngPrenose + ".png");
+  imgNose = loadImage("data/nose/nose" + rngNose + ".png");
+  imgMouth = loadImage("data/mouth/mouth" + rngMouth + ".png");
+  imgArmor = loadImage("data/tops/top" + rngArmor + ".png");
+  imgHelm = loadImage("data/visage/visage" + rngHelm + ".png");
   imgSave = loadImage("save.png");
   imgHide = loadImage("hide.png");
 
@@ -64,6 +66,7 @@ function draw() {
   pop();
   imageMode(CORNER);
   personnage();
+  print(eyeX)
   saves();
   if (saving == false) { allButton(); }
 }
@@ -122,6 +125,11 @@ function buttonNext(h) {
 }
 
 function personnage() {
+  if (buttonIsClicked(helmX, helmY, helmSizeW, helmSizeH) && selected == "helm") {
+    helmX = helmX + (mouseX - pmouseX);
+    helmY = helmY + (mouseY - pmouseY);
+  }
+  if (hideHelm == false) { image(imgHelm, helmX, helmY, helmSizeW, imgHelm.height * helmSizeH / imgHelm.width); }
 
   if (buttonIsClicked(eyeX, eyeY, eyesSizeW, eyesSizeH) && selected == "eye") {
     eyeX = eyeX + (mouseX - pmouseX);
@@ -146,24 +154,44 @@ function personnage() {
     mouthY = mouthY + (mouseY - pmouseY);
   }
   if (hideMouth == false) { image(imgMouth, mouthX, mouthY, mouthSizeW, imgMouth.height * mouthSizeH / imgMouth.width); }
+ 
 
-  if (buttonIsClicked(hairX, hairY, hairSizeW, hairSizeH) && selected == "hair") {
-    hairX = hairX + (mouseX - pmouseX);
-    hairY = hairY + (mouseY - pmouseY);
-  }
-  if (hideHair == false) { image(imgHair, hairX, hairY, hairSizeW, imgHair.height * hairSizeH / imgHair.width); }
+  let armorBumpX = 0, armorBumpY = 0, armorBumpsize = 0;
+  if (rngArmor == 0) { armorBumpY = 60; armorBumpsize = 0; }
+  if (rngArmor == 1) { armorBumpY = 60; armorBumpsize = 0; }
+  if (rngArmor == 2) { armorBumpX = -55, armorBumpY = 300; armorBumpsize = 100; }
+  if (rngArmor == 3) { armorBumpX = -55, armorBumpY = 320; armorBumpsize = 200; }
+  if (rngArmor == 4) { armorBumpX = 120, armorBumpY = 320; armorBumpsize = -220; }
+  if (rngArmor == 5) { armorBumpX = 140, armorBumpY = 215; armorBumpsize = -300; }
+  if (rngArmor == 6) { armorBumpX = -460, armorBumpY = 215; armorBumpsize = 850; }
+  if (rngArmor == 7) { armorBumpX = -250, armorBumpY = 260; armorBumpsize = 500; }
+  if (rngArmor == 8) { armorBumpX = -370, armorBumpY = -320; armorBumpsize = 750; }
+  if (rngArmor == 9) { armorBumpX = -0, armorBumpY = 300; armorBumpsize = 0; }
+  if (rngArmor == 10) { armorBumpX = 120, armorBumpY = -25; armorBumpsize = -250; }
+  if (rngArmor == 11) { armorBumpX = -190, armorBumpY = -180; armorBumpsize = 400; }
 
   if (buttonIsClicked(armorX, armorY, armorSizeW, armorSizeH) && selected == "armor") {
     armorX = armorX + (mouseX - pmouseX);
     armorY = armorY + (mouseY - pmouseY);
   }
-  if (hideArmor == false) { image(imgArmor, armorX, armorY, armorSizeW, imgArmor.height * armorSizeH / imgArmor.width); }
+  if (hideArmor == false) { image(imgArmor, armorX + armorBumpX , armorY + armorBumpY, armorSizeW + armorBumpsize , (imgArmor.height * armorSizeH / imgArmor.width)+armorBumpsize); }
 
-  if (buttonIsClicked(helmX, helmY, helmSizeW, helmSizeH) && selected == "helm") {
-    helmX = helmX + (mouseX - pmouseX);
-    helmY = helmY + (mouseY - pmouseY);
+  let hairBumpX = 0, hairBumpY = 0, hairBumpsize = 0;
+  if (rngHair == 37) { hairBumpY = -30; hairBumpX = -85; hairBumpsize = 180; }
+  if (rngHair == 38) { hairBumpY = -200; hairBumpX = -60; hairBumpsize = 120; }
+  if (rngHair == 39) { hairBumpY = -80; }
+  if (rngHair == 40) { hairBumpY = -0; hairBumpX = -110; hairBumpsize = 270; }
+  if (rngHair == 41) { hairBumpY = -20; hairBumpX = -100; hairBumpsize = 220; }
+  if (rngHair == 42) { hairBumpY = 25; hairBumpX = -185; hairBumpsize = 380; }
+  if (rngHair == 43) { hairBumpY = -20; hairBumpX = -70; hairBumpsize = 160; }
+  if (rngHair == 44) { hairBumpY = -0; hairBumpX = -115; hairBumpsize = 320; }
+  if (rngHair == 45) { hairBumpY = 25; hairBumpX = -178; hairBumpsize = 380; }
+
+  if (buttonIsClicked(hairX, hairY, hairSizeW, hairSizeH) && selected == "hair") {
+    hairX = hairX + (mouseX - pmouseX);
+    hairY = hairY + (mouseY - pmouseY);
   }
-  if (hideHelm == false) { image(imgHelm, helmX, helmY, helmSizeW, imgHelm.height * helmSizeH / imgHelm.width); }
+  if (hideHair == false) { image(imgHair, hairX + hairBumpX, hairY + hairBumpY, hairSizeW + hairBumpsize, (imgHair.height * hairSizeH / imgHair.width) + hairBumpsize); }
 
 }
 
@@ -173,78 +201,78 @@ function mousePressed() {
   if (buttonIsClicked(width - 200, 80, 20, 80)) {
     rngEye--;
     rngEye = constrain(rngEye, 0, 59);
-    imgEyes = loadImage("data/eyes/eyes_" + rngEye + ".png");
+    imgEyes = loadImage("data/eyes/eyes" + rngEye + ".png");
   }
   if (buttonIsClicked(width - 60, 80, 20, 80)) {
     rngEye++;
     rngEye = constrain(rngEye, 0, 59);
-    imgEyes = loadImage("data/eyes/eyes_" + rngEye + ".png");
+    imgEyes = loadImage("data/eyes/eyes" + rngEye + ".png");
   }
 
   if (buttonIsClicked(width - 200, 40 + 80 * 2, 20, 80)) {
     rngPrenose--;
     rngPrenose = constrain(rngPrenose, 0, 27);
-    imgPrenose = loadImage("data/prenose/prenose_" + rngPrenose + ".png")
+    imgPrenose = loadImage("data/prenose/prenose" + rngPrenose + ".png")
   }
   if (buttonIsClicked(width - 60, 40 + 80 * 2, 20, 80)) {
     rngPrenose++;
     rngPrenose = constrain(rngPrenose, 0, 27);
-    imgPrenose = loadImage("data/prenose/prenose_" + rngPrenose + ".png")
+    imgPrenose = loadImage("data/prenose/prenose" + rngPrenose + ".png")
   }
 
   if (buttonIsClicked(width - 200, 40 + 80 * 3, 20, 80)) {
     rngNose--;
     rngNose = constrain(rngNose, 0, 37);
-    imgNose = loadImage("data/nose/nose_" + rngNose + ".png");
+    imgNose = loadImage("data/nose/nose" + rngNose + ".png");
   }
   if (buttonIsClicked(width - 60, 40 + 80 * 3, 20, 80)) {
     rngNose++;
     rngNose = constrain(rngNose, 0, 37);
-    imgNose = loadImage("data/nose/nose_" + rngNose + ".png");
+    imgNose = loadImage("data/nose/nose" + rngNose + ".png");
   }
 
   if (buttonIsClicked(width - 200, 40 + 80 * 4, 20, 80)) {
     rngMouth--;
     rngMouth = constrain(rngMouth, 0, 40);
-    imgMouth = loadImage("data/mouth/mouth_" + rngMouth + ".png");
+    imgMouth = loadImage("data/mouth/mouth" + rngMouth + ".png");
   }
   if (buttonIsClicked(width - 60, 40 + 80 * 4, 20, 80)) {
     rngMouth++;
     rngMouth = constrain(rngMouth, 0, 40);
-    imgMouth = loadImage("data/mouth/mouth_" + rngMouth + ".png");
+    imgMouth = loadImage("data/mouth/mouth" + rngMouth + ".png");
   }
 
   if (buttonIsClicked(width - 200, 40 + 80 * 5, 20, 80)) {
     rngHair--;
     rngHair = constrain(rngHair, 0, 114);
-    imgHair = loadImage("data/hair/hair_" + rngHair + ".png");
+    imgHair = loadImage("data/hair/hair" + rngHair + ".png");
   }
   if (buttonIsClicked(width - 60, 40 + 80 * 5, 20, 80)) {
     rngHair++;
     rngHair = constrain(rngHair, 0, 114);
-    imgHair = loadImage("data/hair/hair_" + rngHair + ".png");
+    imgHair = loadImage("data/hair/hair" + rngHair + ".png");
   }
 
   if (buttonIsClicked(width - 200, 40 + 80 * 6, 20, 80)) {
     rngArmor--;
     rngArmor = constrain(rngArmor, 0, 108);
-    imgArmor = loadImage("data/tops/top_" + rngArmor + ".png");
+    imgArmor = loadImage("data/tops/top" + rngArmor + ".png");
   }
   if (buttonIsClicked(width - 60, 40 + 80 * 6, 20, 80)) {
     rngArmor++;
     rngArmor = constrain(rngArmor, 0, 108);
-    imgArmor = loadImage("data/tops/top_" + rngArmor + ".png");
+    imgArmor = loadImage("data/tops/top" + rngArmor + ".png");
   }
 
   if (buttonIsClicked(width - 200, 40 + 80 * 7, 20, 80)) {
     rngHelm--;
     rngHelm = constrain(rngHelm, 0, 26);
-    imgHelm = loadImage("data/helmet/helm_" + rngHelm + ".png");
+    imgHelm = loadImage("data/visage/visage" + rngHelm + ".png");
   }
   if (buttonIsClicked(width - 60, 40 + 80 * 7, 20, 80)) {
     rngHelm++;
     rngHelm = constrain(rngHelm, 0, 26);
-    imgHelm = loadImage("data/helmet/helm_" + rngHelm + ".png");
+    imgHelm = loadImage("data/visage/visage" + rngHelm + ".png");
   }
 
   // all button on the side
