@@ -6,7 +6,7 @@ let rngNose, rngMouth, rngEye, rngHair, rngPrenose, rngArmor, rngHelm;
 let imgSave, imgHide, saving = false, savingCounter = 0;
 let hideHair = false, hideEyes = false, hideNose = false, hidePrenose = false, hideMouth = false, hideArmor = false, hideHelm = false;
 let selected = "";
-let hairX = 256, hairY = 56, eyeX = 256, eyeY = 56, prenoseX = 256, prenoseY = 56, noseX = 256, noseY = 56, mouthX = 256, mouthY = 56, armorX = 100, armorY = 500, helmX = 256, helmY = 56;
+let hairX = 56, hairY = 56, eyeX = 56, eyeY = 56, prenoseX = 56, prenoseY = 56, noseX = 56, noseY = 56, mouthX = 56, mouthY = 56, armorX = -100, armorY = 500, helmX = 56, helmY = 56;
 let hairSizeW = 1024, hairSizeH = 1024, eyesSizeW = 1024, eyesSizeH = 1024, prenoseSizeW = 1024, prenoseSizeH = 1024;
 let noseSizeW = 1024, noseSizeH = 1024, mouthSizeW = 1024, mouthSizeH = 1024, armorSizeW = 1280, armorSizeH = 1280, helmSizeW = 1024, helmSizeH = 1024;
 
